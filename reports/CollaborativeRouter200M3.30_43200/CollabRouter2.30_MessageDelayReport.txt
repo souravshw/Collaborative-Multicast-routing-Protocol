@@ -1,0 +1,5 @@
+# messageDelay  cumulativeProbability
+0.3000 0.0189
+71.9000 0.0377
+77.1000 0.0566
+120.7000 0.0755

@@ -1,0 +1,20 @@
+Message stats for scenario TimeStampColaborativeProphetRouter
+sim_time: 2395.1000
+created: 17
+started: 68
+relayed: 65
+aborted: 2
+dropped: 0
+removed: 0
+delivered: 34
+delivery_prob: 2.0000
+response_prob: 0.0000
+overhead_ratio: 0.9118
+latency_avg: 770.0206
+latency_med: 571.7000
+hopcount_avg: 1.4118
+hopcount_med: 1
+buffertime_avg: NaN
+buffertime_med: NaN
+rtt_avg: NaN
+rtt_med: NaN

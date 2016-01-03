@@ -1,0 +1,20 @@
+Message stats for scenario CollabRouter3.0
+sim_time: 43200.1000
+created: 6147
+started: 3056732
+relayed: 3043989
+aborted: 12703
+dropped: 2977837
+removed: 0
+delivered: 33464
+delivery_prob: 5.4440
+response_prob: 0.0000
+overhead_ratio: 89.9631
+latency_avg: 2938.5152
+latency_med: 2919.5000
+hopcount_avg: 7.6805
+hopcount_med: 7
+buffertime_avg: 514.4327
+buffertime_med: 364.4000
+rtt_avg: NaN
+rtt_med: NaN

@@ -1,0 +1,227 @@
+#
+# Default settings for the simulation
+#
+
+## Scenario settings
+Scenario.name = TimeStampColaborativeProphetRouter
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+# 43200s == 12h
+Scenario.endTime =4600
+#Settings for all the gangs
+
+
+## Interface-specific settings:
+# type : which interface class the interface belongs to
+# For different types, the sub-parameters are interface-specific
+# For SimpleBroadcastInterface, the parameters are:
+# transmitSpeed : transmit speed of the interface (bytes per second) 
+# transmitRange : range of the interface (meters)
+
+# "Bluetooth" interface for all nodes move
+btInterface.type = SimpleBroadcastInterface
+# Transmit speed of 2 Mbps = 250kBps
+
+#My Personal Settings
+btInterface.transmitSpeed = 512k
+btInterface.transmitRange = 80
+Group.router = ColaborativeProphetRouter
+Group.bufferSize = 15M
+Report.reportDir = reports/ExclusiveOne/
+
+# High speed, long range, interface for group 4
+highspeedInterface.type = SimpleBroadcastInterface
+highspeedInterface.transmitSpeed = 10M
+highspeedInterface.transmitRange = 1000
+
+Scenario.nrofHostGroups = 3
+
+# Define 38 different node groups
+HostGang.gangs=37
+HostGang.gangs0=1,2,7,15
+HostGang.gangs1=4,5,9
+HostGang.gangs2=7,8,12
+HostGang.gangs3=11,12,16
+HostGang.gangs4=16,17,24
+HostGang.gangs5=22,23,4
+HostGang.gangs6=26,27,8
+HostGang.gangs7=1
+HostGang.gangs8=2
+HostGang.gangs9=3
+HostGang.gangs10=4
+HostGang.gangs11=5
+HostGang.gangs12=6
+HostGang.gangs13=7
+HostGang.gangs14=8
+HostGang.gangs15=9
+HostGang.gangs16=10
+HostGang.gangs17=11
+HostGang.gangs18=12
+HostGang.gangs19=13
+HostGang.gangs20=14
+HostGang.gangs21=15
+HostGang.gangs22=16
+HostGang.gangs23=17
+HostGang.gangs24=18
+HostGang.gangs25=19
+HostGang.gangs26=20
+HostGang.gangs27=21
+HostGang.gangs28=22
+HostGang.gangs29=23
+HostGang.gangs30=24
+HostGang.gangs31=25
+HostGang.gangs32=26
+HostGang.gangs33=27
+HostGang.gangs34=28
+HostGang.gangs35=29
+HostGang.gangs36=30
+
+
+## Group-specific settings:
+# groupID : Group's identifier. Used as the prefix of host names
+# nrofHosts: number of hosts in the group
+# movementModel: movement model of the hosts (valid class name from movement package)
+# waitTime: minimum and maximum wait times (seconds) after reaching destination
+# speed: minimum and maximum speeds (m/s) when moving on a path
+# bufferSize: size of the message buffer (bytes)
+# router: router used to route messages (valid class name from routing package)
+# activeTimes: Time intervals when the nodes in the group are active (start1, end1, start2, end2, ...)
+# msgTtl : TTL (minutes) of the messages created by this host group, default=infinite
+
+## Group and movement model specific settings
+# pois: Points Of Interest indexes and probabilities (poiIndex1, poiProb1, poiIndex2, poiProb2, ... )
+#       for ShortestPathMapBasedMovement
+# okMaps : which map nodes are OK for the group (map file indexes), default=all 
+#          for all MapBasedMovent models
+# routeFile: route's file path - for MapRouteMovement
+# routeType: route's type - for MapRouteMovement
+
+
+# Common settings for all groups
+Group.movementModel = ShortestPathMapBasedMovement
+
+
+Group.waitTime = 0, 120
+# All nodes have the bluetooth interface
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+# Walking speeds
+Group.speed = 0.5, 1.5
+# Message TTL of 300 minutes (5 hours)
+Group.msgTtl = 300
+
+Group.nrofHosts = 10
+Group.initialEnergy = 500000
+Group.scanEnergy = 0.06
+Group.scanResponseEnergy = 0.08
+Group.transmitEnergy = 0.08
+Group.baseEnergy = 0.07
+Group.charging_cofficient = 20
+Group.thrushold_energy = 3000
+# group1 (pedestrians) specific settings
+Group1.groupID = p
+
+# group2 specific settings
+Group2.groupID = c
+# cars can drive only on roads
+Group2.okMaps = 1
+# 10-50 km/h
+Group2.speed = 2.7, 13.9
+
+# another group of pedestrians
+Group3.groupID = w
+
+## Message creation parameters 
+# How many event generators
+Events.nrof = 2
+# Class of the first event generator
+Events1.class = MessageEventGenerator
+#Events1.filepath=/home/sanu/Dropbox/workspace/BOne/src/reports/messageReportforM.txt
+# (following settings are specific for the MessageEventGenerator class)
+# Creation interval in seconds (one new message every 25 to 35 seconds)
+Events1.interval = 25,45
+# Message sizes (500kB - 1MB)
+Events1.size = 500k,1M
+# range of message source/destination addresses
+Events1.hosts = 0,30
+Events1.tohosts=0,36
+Events1.priority=1,5
+# Message ID prefix
+Events1.prefix = M
+
+Events2.class = MessageEventGenerator
+Events2.interval = 25,45
+Events2.size = 500k,1M
+Events2.hosts = 0,30
+Events2.tohosts=0,36
+Events2.priority=1,5
+
+## Movement model settings
+# seed for movement models' pseudo random number generator (default = 0)
+MovementModel.rngSeed = 1
+# World's size for Movement Models without implicit size (width, height; meters)
+MovementModel.worldSize = 5500, 7000
+# How long time to move hosts in the world before real simulation
+MovementModel.warmup = 1000
+
+## Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 4
+
+MapBasedMovement.mapFile1 = data/jammu.wkt
+MapBasedMovement.mapFile2 = data/medical.wkt
+MapBasedMovement.mapFile3 = data/police.wkt
+MapBasedMovement.mapFile4 = data/ambulance.wkt
+
+## Reports - all report names have to be valid report classes
+
+# how many reports to load
+Report.nrofReports = 14
+# length of the warm up period (simulated seconds)
+Report.warmup = 0
+# default directory of reports (can be overridden per Report with output setting)
+
+# Report classes to load
+Report.report1 = MessageStatsReport
+Report.report2 = MessageReport
+Report.report3 = MessageDelayReport
+Report.report4 = UniqueEncountersReport
+Report.report5 = TotalEncountersReport
+Report.report6 = MessageDeliveryReport
+Report.report7 = InterContactTimesReport
+Report.report8 = EventLogReport
+Report.report9 = DeliveredMessagesReport
+Report.report10 = CreatedMessagesReport
+Report.report11 = ContactTimesReport
+Report.report12 = ContactsPerHourReport
+Report.report13 = DistanceDelayReport
+Report.report14 = EncountersVSUniqueEncountersReport
+
+
+## Default settings for some routers settings
+ColaborativeProphetRouter.secondsInTimeUnit = 30
+ProphetRouter.secondsInTimeUnit = 30
+
+SprayAndWaitRouter.nrofCopies = 6
+SprayAndWaitRouter.binaryMode = true
+
+## Optimization settings -- these affect the speed of the simulation
+## see World class for details.
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+
+## GUI settings
+
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/jammu_new.png
+# Image offset in pixels (x, y)
+GUI.UnderlayImage.offset = 64, 20
+# Scaling factor for the image
+GUI.UnderlayImage.scale = 4.75
+# Image rotation (radians)
+GUI.UnderlayImage.rotate = -0.015
+
+# how many events to show in the log panel (default = 30)
+GUI.EventLogPanel.nrofEvents = 1000
+# Regular Expression log filter (see Pattern-class from the Java API for RE-matching details)
+#GUI.EventLogPanel.REfilter = .*p[1-9]<->p[1-9]$
